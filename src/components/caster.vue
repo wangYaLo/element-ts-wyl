@@ -5,7 +5,7 @@ import { Cascader } from 'element-ui';
   extends: Cascader,
   name: 'Cascader'
 })
-export default class zbCaster extends Vue {
+export default class xdmCaster extends Vue {
   @Prop({ default: false }) beforDeleteTag!: () => Promise<any>;
   @Prop() data!: any;
   $confirm: any;

@@ -2,17 +2,17 @@
   <div class="hello">
     <div class="block">
       <span class="demonstration">多选可搜索</span>
-      <zb-caster :beforDeleteTag="handleChange" ref="case" placeholder="试试搜索：指南1" :options="options" :props="{ multiple: true }" filterable></zb-caster>
+      <xdm-caster :beforDeleteTag="handleChange" ref="case" placeholder="试试搜索：指南1" :options="options" :props="{ multiple: true }" filterable></xdm-caster>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-import zbCaster from './caster.vue';
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import xdmCaster from './caster.vue';
 @Component({
   components: {
-    zbCaster
+    xdmCaster
   }
 })
 export default class HelloWorld extends Vue {

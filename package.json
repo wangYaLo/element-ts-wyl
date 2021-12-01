@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "dist/wylts.common.js",
   "scripts": {
-    "serve": "vue-cli-service serve --mode development",
+    "dev": "vue-cli-service serve --mode development",
     "build": "vue-cli-service build --mode production --target lib --name wylts ./src/index.ts",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
