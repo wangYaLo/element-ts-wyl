@@ -2,8 +2,10 @@
   <div class="hello">
     <div class="block">
       <span class="demonstration">多选可搜索</span>
-      <xdm-caster :beforDeleteTag="handleChange" ref="case" placeholder="试试搜索：指南1" :options="options" :props="{ multiple: true }" filterable></xdm-caster>
+      <wyl-upload ref="child"  :wylclick='handleChange'  uploadWord='上传1' actionurl=''>
+      </wyl-upload>
     </div>
+    <el-button @click="handleChange">上传</el-button>
   </div>
 </template>
 
@@ -282,25 +284,8 @@ export default class HelloWorld extends Vue {
   ];
   $confirm: any;
   $message: any;
-  created(): void {}
-  handleChange(): Promise<any> {
-    return new Promise((reslove, reject) => {
-      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      })
-        .then(() => {
-          reslove(1);
-        })
-        .catch(() => {
-          reject();
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          });
-        });
-    });
+  handleChange(): void {
+   console.log(this.$refs.child.wylClick());
   }
 }
 </script>

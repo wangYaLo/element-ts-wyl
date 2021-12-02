@@ -11,16 +11,6 @@ export default class wylUpload extends Vue {
   $confirm: any;
   deleteTag: any;
   $message: any;
-  mounted(): void {
-    if (this.beforDeleteTag) {
-      const func: any = this.deleteTag;
-      this.deleteTag = (tag: { closable: boolean; hitState: boolean; key: number; node: Node; text: string }) => {
-        this.beforDeleteTag().then(() => {
-          func(tag);
-        });
-      };
-    }
-  }
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

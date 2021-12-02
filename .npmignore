@@ -15,4 +15,6 @@ jest.config.js
 .eslintrc.js
 .prettierrc
 babel.config.js
+.env.production
+.env.development
 index.js
