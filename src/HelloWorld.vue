@@ -285,6 +285,8 @@ export default class HelloWorld extends Vue {
   $confirm: any;
   $message: any;
   handleChange(): void {
+    console.log((this.$refs.child as any).wylClick, '123');
+    
     (this.$refs.child as any).wylClick()
   }
 }

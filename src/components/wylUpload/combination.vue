@@ -1,7 +1,7 @@
 <template>
   <div>
-    <new-upload :accept="wylAccept | acceptFilter"  :before-upload="beforeUpload" v-show="wyluploadshow" :class="wyluploadclass" :action="actionurl">
-      <el-button ref="wylbutton" :class="wylbuttonclass" :size="wylsize" :type="wyltype">{{ uploadWord }}</el-button>
+    <new-upload ref="wylbutton" :accept="wylAccept | acceptFilter"  :before-upload="beforeUpload" v-show="wyluploadshow" :class="wyluploadclass" :action="actionurl">
+      <el-button  :class="wylbuttonclass" :size="wylsize" :type="wyltype">{{ uploadWord }}</el-button>
       <div slot="tip" class="el-upload__tip">{{ wyltip }}</div>
     </new-upload>
     <el-dialog :visible.sync="dialogTableVisible">
@@ -46,11 +46,12 @@ export default class wylUpload extends Vue {
   } }) private wylAccept!: string
   dialogTableVisible: boolean = false;
   wylClick(): void {
-    (this.$refs.wylbutton as any).handleClick()
+    const func = (this.$refs.wylbutton as any)
+    func.$children[0].$refs.input.click()
   }
   mounted(): void {
-    const fs = require('fs')
-    console.log(fs);
+    // const fs = require('fs')
+    // console.log(fs);
   }
   beforeUpload(file: raw_type): void {
     console.log(file);
