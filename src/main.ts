@@ -2,9 +2,12 @@ import Vue from 'vue';
 import App from './App.vue';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-console.log(process.env.NODE_ENV);
+import wylElement from './index'
+console.log(wylElement);
 
 Vue.use(ElementUI);
+Vue.use(wylElement);
+
 Vue.config.productionTip = false;
 
 new Vue({

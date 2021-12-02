@@ -9,12 +9,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import xdmCaster from './caster.vue';
-@Component({
-  components: {
-    xdmCaster
-  }
-})
+@Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
   options: any = [
@@ -288,7 +283,6 @@ export default class HelloWorld extends Vue {
   $confirm: any;
   $message: any;
   created(): void {}
-  mounted(): void {}
   handleChange(): Promise<any> {
     return new Promise((reslove, reject) => {
       this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
