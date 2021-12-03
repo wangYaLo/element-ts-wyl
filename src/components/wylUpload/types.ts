@@ -8,6 +8,17 @@ export interface raw_type {
   webkitRelativePath: string;
 }
 
-export enum AcceptType {
-  png = '1'
+export interface File_All {
+  name: string;
+  percentage: number;
+  raw: raw_type;
+  response: response_All
+  size: number;
+  status: string;
+  uid: number;
+}
+export interface response_All {
+  code: number;
+  msg: string | null;
+  data: { docuId: string, url: string };
 }

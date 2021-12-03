@@ -2,7 +2,7 @@
   <div class="hello">
     <div class="block">
       <span class="demonstration">多选可搜索</span>
-      <wyl-upload ref="child"  :wylclick='handleChange'  uploadWord='上传1' actionurl=''>
+      <wyl-upload ref="child"  :wylclick='handleChange'  uploadWord='上传1' actionurl='http://test-front-alb-863622653.ap-southeast-1.elb.amazonaws.com:9877/api/docu/document/uploadDocument'>
       </wyl-upload>
     </div>
     <el-button @click="handleChange">上传</el-button>
@@ -284,11 +284,6 @@ export default class HelloWorld extends Vue {
   ];
   $confirm: any;
   $message: any;
-  handleChange(): void {
-    console.log((this.$refs.child as any).wylClick, '123');
-    
-    (this.$refs.child as any).wylClick()
-  }
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
