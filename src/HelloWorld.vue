@@ -284,6 +284,9 @@ export default class HelloWorld extends Vue {
   ];
   $confirm: any;
   $message: any;
+  handleChange(): void {
+    (this.$refs.child as any).wylClick()
+  }
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

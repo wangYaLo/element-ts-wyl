@@ -184,5 +184,20 @@ export const fileSuffix: string[] = [
   'xpm image/x-xpixmap',
   'xwd image/x-xwindowdump',
   'z application/x-compress',
-  'zip application/zip'
+  'zip application/zip',
+  'html text/html',
+  'htm text/html',
+  'shtml text/html',
+  'xml text/xml',
+  'json application/json',
+  'docx application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  'pptx application/vnd.openxmlformats-officedocument.presentationml.presentation',
+  'xlsx application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  'png image/png',
+  'mp4 video/mp4',
+  'mpeg video/mpeg',
+  'mpg video/mpeg',
+  'flv video/x-flv',
+  'webp image/webp'
 ];
+

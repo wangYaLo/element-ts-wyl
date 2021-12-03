@@ -1,5 +1,4 @@
 <template>
-<!-- :on-success="onSuccess" -->
   <div>
     <new-upload ref="wylbutton"
     :accept="wylAccept | acceptFilter"
@@ -8,6 +7,7 @@
     :class="wyluploadclass"
     :action="actionurl"
     :on-progress="onProgress"
+    :on-success="onSuccess"
     >
       <el-button  :class="wylbuttonclass" :size="size" :type="type">{{ uploadWord }}</el-button>
       <div slot="tip" class="el-upload__tip">{{ wyltip }}</div>
@@ -29,10 +29,10 @@
     :before-close="beforeClose"
     :center="center"
     :destroy-on-close="destroyOnClose"
-    @open='open'
-    @opened='opened'
-    @close='close'
-    @closed='closed'
+    @open='open | nonefunc'
+    @opened='opened | nonefunc'
+    @close='close | nonefunc'
+    @closed='closed | nonefunc'
     >
       <div class="uploadprogress">
         <div class="uploadheader">
@@ -60,7 +60,7 @@
 
 <script lang='ts'>
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { File_All, raw_type } from './types';
+import { File_All, raw_type, response_All } from './types';
 import newUpload from './wylUpload.vue';
 import FileType from 'file-type/browser';
 import { fileSuffix } from './supported'
@@ -106,7 +106,7 @@ export default class wylUpload extends Vue {
   @Prop() private beforeClose!: (done: any) => void;
   @Prop({ default: false }) private center!: boolean;
   @Prop({ default: false }) private destroyOnClose!: boolean;
-  @Prop({ default: function() {} }) private open!: () => void;
+  @Prop() private open!: () => void;
   @Prop() private opened!: () => void;
   @Prop() private close!: () => void;
   @Prop() private closed!: () => void;
@@ -114,7 +114,7 @@ export default class wylUpload extends Vue {
   // @Prop({ default: true }) private closeOnPressEscape!: boolean;
   @Prop({ default: () => {
     return ['png', 'jpg', 'webp', 'gif', 'ppt', 'pptx', 'xls', 'xlsx', 'pdf', 'doc', 'docx']
-  } }) private wylAccept!: string
+  } }) private wylAccept!: string[]
   dialogTableVisible: boolean = false;
   public timeStamp: number = 0; //当前上传时间戳
   public timeStamp1: number = 0; //存储本次上传时间戳
@@ -137,14 +137,31 @@ export default class wylUpload extends Vue {
     const p = new Promise((reslove, reject) => {
       const res = (FileType as any).fromBlob(file)
       res.then((response: any) => {
-        reslove(1)
+        const fileTypeArr: string[] = []
+        const fileTypeObj = this.getFileType()
+        this.wylAccept.forEach((item: string) => {
+          fileTypeArr[fileTypeArr.length] = fileTypeObj[item]
+        })
+        const haveFileType = fileTypeArr.filter((value: string) => {
+          return value === response.mime
+        })
+        if (haveFileType.length !== 0) {
+          reslove(1)
+        } else {
+          reject()
+        }
       }).catch(() => {
         reject()
       })
     })
     return p
   }
-  // onSuccess(response: any, file: any, fileList: any): void {}
+  onSuccess(response: response_All, file: File_All): void {
+    this.dialogTableVisible = false
+    const fileboolean = this.wylAccept
+    console.log(fileboolean);
+    
+  }
   onProgress(event: ProgressEvent & { percent: number}, file: File_All): void {
     this.uploadfilename = file.name;
     this.uploadfilesize = '(' + (file.size / 1000000).toFixed(2) + 'MB)';
@@ -170,6 +187,9 @@ export default class wylUpload extends Vue {
       fileType[item.split(' ')[0]] = item.split(' ')[1]
     })
     return fileType
+  }
+  nonefunc(): boolean {
+    return true
   }
 }
 </script>
