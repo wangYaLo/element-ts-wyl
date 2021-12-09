@@ -127,8 +127,8 @@ export default class wylUpload extends Vue {
   public isActive: number = 1; //默认选择锚点索引
   public uploadfilename: string = ''; //上传文件名
   public uploadfilesize: string = ''; //上传文件大小uploaded
-  public uploaded: boolean = true; //上传文件大小
-  $refs: any
+  public uploaded: boolean = true; //
+  $refs: any;
   wylClick(): void {
     const func = this.$refs.wylbutton
     func.$children[0].$refs.input.click()
@@ -159,8 +159,6 @@ export default class wylUpload extends Vue {
   onSuccess(response: response_All, file: File_All): void {
     this.dialogTableVisible = false
     const fileboolean = this.wylAccept
-    console.log(fileboolean);
-    
   }
   onProgress(event: ProgressEvent & { percent: number}, file: File_All): void {
     this.uploadfilename = file.name;

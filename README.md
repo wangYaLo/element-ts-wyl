@@ -10,7 +10,7 @@ npm install element-ts-wyl -S
 
 ```vue
 import wylElement from 'element-ts-wyl'
-Vue.use(ElementUI);
+Vue.use(wylElement);
 ```
 
 #### xdm-caster
