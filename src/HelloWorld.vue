@@ -6,284 +6,105 @@
       </wyl-upload>
     </div>
     <el-button @click="handleChange">上传</el-button>
+
+
+    <div>
+      <el-input
+        type="textarea"
+        :rows="10"
+        placeholder="请输入内容"
+        v-model="xianshiValue">
+      </el-input>
+    </div>
+
+
+    <div>
+      <pre>
+        <code>
+          {{xianshiValue}}
+        </code>
+      </pre>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import Unite from './newString'
 @Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
-  options: any = [
-    {
-      value: 'zhinan',
-      label: '指南',
-      children: [
-        {
-          value: 'shejiyuanze',
-          label: '设计原则',
-          children: [
-            {
-              value: 'yizhi',
-              label: '一致'
-            },
-            {
-              value: 'fankui',
-              label: '反馈'
-            },
-            {
-              value: 'xiaolv',
-              label: '效率'
-            },
-            {
-              value: 'kekong',
-              label: '可控'
-            }
-          ]
-        },
-        {
-          value: 'daohang',
-          label: '导航',
-          children: [
-            {
-              value: 'cexiangdaohang',
-              label: '侧向导航'
-            },
-            {
-              value: 'dingbudaohang',
-              label: '顶部导航'
-            }
-          ]
-        }
-      ]
-    },
-    {
-      value: 'zujian',
-      label: '组件',
-      children: [
-        {
-          value: 'basic',
-          label: 'Basic',
-          children: [
-            {
-              value: 'layout',
-              label: 'Layout 布局'
-            },
-            {
-              value: 'color',
-              label: 'Color 色彩'
-            },
-            {
-              value: 'typography',
-              label: 'Typography 字体'
-            },
-            {
-              value: 'icon',
-              label: 'Icon 图标'
-            },
-            {
-              value: 'button',
-              label: 'Button 按钮'
-            }
-          ]
-        },
-        {
-          value: 'form',
-          label: 'Form',
-          children: [
-            {
-              value: 'radio',
-              label: 'Radio 单选框'
-            },
-            {
-              value: 'checkbox',
-              label: 'Checkbox 多选框'
-            },
-            {
-              value: 'input',
-              label: 'Input 输入框'
-            },
-            {
-              value: 'input-number',
-              label: 'InputNumber 计数器'
-            },
-            {
-              value: 'select',
-              label: 'Select 选择器'
-            },
-            {
-              value: 'cascader',
-              label: 'Cascader 级联选择器'
-            },
-            {
-              value: 'switch',
-              label: 'Switch 开关'
-            },
-            {
-              value: 'slider',
-              label: 'Slider 滑块'
-            },
-            {
-              value: 'time-picker',
-              label: 'TimePicker 时间选择器'
-            },
-            {
-              value: 'date-picker',
-              label: 'DatePicker 日期选择器'
-            },
-            {
-              value: 'datetime-picker',
-              label: 'DateTimePicker 日期时间选择器'
-            },
-            {
-              value: 'upload',
-              label: 'Upload 上传'
-            },
-            {
-              value: 'rate',
-              label: 'Rate 评分'
-            },
-            {
-              value: 'form',
-              label: 'Form 表单'
-            }
-          ]
-        },
-        {
-          value: 'data',
-          label: 'Data',
-          children: [
-            {
-              value: 'table',
-              label: 'Table 表格'
-            },
-            {
-              value: 'tag',
-              label: 'Tag 标签'
-            },
-            {
-              value: 'progress',
-              label: 'Progress 进度条'
-            },
-            {
-              value: 'tree',
-              label: 'Tree 树形控件'
-            },
-            {
-              value: 'pagination',
-              label: 'Pagination 分页'
-            },
-            {
-              value: 'badge',
-              label: 'Badge 标记'
-            }
-          ]
-        },
-        {
-          value: 'notice',
-          label: 'Notice',
-          children: [
-            {
-              value: 'alert',
-              label: 'Alert 警告'
-            },
-            {
-              value: 'loading',
-              label: 'Loading 加载'
-            },
-            {
-              value: 'message',
-              label: 'Message 消息提示'
-            },
-            {
-              value: 'message-box',
-              label: 'MessageBox 弹框'
-            },
-            {
-              value: 'notification',
-              label: 'Notification 通知'
-            }
-          ]
-        },
-        {
-          value: 'navigation',
-          label: 'Navigation',
-          children: [
-            {
-              value: 'menu',
-              label: 'NavMenu 导航菜单'
-            },
-            {
-              value: 'tabs',
-              label: 'Tabs 标签页'
-            },
-            {
-              value: 'breadcrumb',
-              label: 'Breadcrumb 面包屑'
-            },
-            {
-              value: 'dropdown',
-              label: 'Dropdown 下拉菜单'
-            },
-            {
-              value: 'steps',
-              label: 'Steps 步骤条'
-            }
-          ]
-        },
-        {
-          value: 'others',
-          label: 'Others',
-          children: [
-            {
-              value: 'dialog',
-              label: 'Dialog 对话框'
-            },
-            {
-              value: 'tooltip',
-              label: 'Tooltip 文字提示'
-            },
-            {
-              value: 'popover',
-              label: 'Popover 弹出框'
-            },
-            {
-              value: 'card',
-              label: 'Card 卡片'
-            },
-            {
-              value: 'carousel',
-              label: 'Carousel 走马灯'
-            },
-            {
-              value: 'collapse',
-              label: 'Collapse 折叠面板'
-            }
-          ]
-        }
-      ]
-    },
-    {
-      value: 'ziyuan',
-      label: '资源',
-      children: [
-        {
-          value: 'axure',
-          label: 'Axure Components'
-        },
-        {
-          value: 'sketch',
-          label: 'Sketch Templates'
-        },
-        {
-          value: 'jiaohu',
-          label: '组件交互文档'
-        }
-      ]
-    }
-  ];
   $confirm: any;
   $message: any;
+  cengji: any[] = [{
+    name: 'string',
+    obj: 'object',
+    arr: 'array'
+  }];
+  shishi: any;
+  xianshiValue: string = '';
+  created(): void {
+    const obj = [
+      'name',
+      {
+        name: 'lisi'
+      }
+    ]
+
+    new Unite(obj).getString((res) => {
+      console.log(res);
+      
+      this.xianshiValue = res
+    })
+    // if (typeof this.cengji[0] === 'object') {
+    //   if (isOfType.array(this.cengji[0])) {
+    //     console.log('is arr');
+    //   } else if (isOfType.object(this.cengji[0])) {
+    //     this.shishi = {}
+    //     const newObj = this.cengji[0]
+    //     for (const key in newObj) {
+    //       if (newObj[key] === 'object') {
+    //         this.shishi[key] = {}
+    //       } else if (newObj[key] === 'array') {
+    //         this.shishi[key] = []
+    //       } else if (newObj[key] === 'string') {
+    //         this.shishi[key] = '噫噫噫'
+    //       } else if (newObj[key] === 'number') {
+    //         this.shishi[key] = 10
+    //       } else if (newObj[key] === 'boolean') {
+    //         this.shishi[key] = true
+    //       }
+    //     }
+    //   }
+    // }
+    // this.xuanran(this.shishi)
+  }
+  mounted(): void {
+    // this.cengji.forEach((item) => {
+    //   for (const key in item) {
+    //     if (item[key] === 'object') {
+    //       this.cengji[1].push({ name: 'obj' })
+    //     }
+    //   }
+    // })
+    // console.log(this.shishi);
+  }
+  getkey(item: { [x: string]: any }): any[] {
+    const arr = []
+    for (const key in item) {
+      const value = key + ': ' + item[key] + `;\n`
+      arr.push(value)
+    }
+    return arr
+  }
+  xuanran(data): void {
+    let xrValue = '{\n'
+    for (const key in data) {
+      const value = key + ': ' + data[key] + `;\n`
+      xrValue += value
+    }
+    this.xianshiValue = xrValue
+  }
   handleChange(): void {
     (this.$refs.child as any).wylClick()
   }
@@ -305,4 +126,21 @@ li {
 a {
   color: #42b983;
 }
+pre {
+    background-color: #282c34;
+  }
+
+  code {
+    word-wrap: normal;
+    word-break: break-all;
+    background-color: #282c34;
+    color: #abb2bf;
+    -webkit-text-size-adjust: none;
+    overflow-x: auto;
+    white-space: pre;
+    display: block;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 22px
+  }
 </style>
